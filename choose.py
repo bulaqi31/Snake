@@ -1,0 +1,55 @@
+import pygame
+import random
+from const import *
+from text_rect import *
+
+class Choose(object):
+    def __init__(self,window):
+        self.window = window                                # 在哪个窗口
+        self.start = 0                                      # 能否开始游戏
+        self.step = "single or double"                      # 进行什么选择
+        self.mode = None                                    # 现在是什么模式，应该怎么操作
+        self.text_rects = []                                # 有哪些文本框
+        start_rect = Text_Rect("START",200,"start","done",center=(win_width//2,win_height//2))
+        single_rect = Text_Rect("SINGLE",100,"single or double","start",center=(win_width//2-200,win_height//2))
+        double_rect = Text_Rect("DOUBLE",100,"single or double","start",center=(win_width//2+200,win_height//2))
+        self.text_rects.append(start_rect)
+        self.text_rects.append(single_rect)
+        self.text_rects.append(double_rect)
+
+    def draw(self):
+        self.drawback()
+        window = self.window
+        for rect in self.text_rects:
+            if self.step == rect.step:          #只画对应步骤的文本框
+                rect.draw(window)
+
+
+    def drawback(self):           # 把游戏背景画出来
+        
+        boundry_color = BLUE
+        boundry_width = 20
+        pygame.display.set_caption('双吃蛇游戏')
+        window = self.window
+        window.fill(GRAY)
+        # 参数分别为：窗口对象，左上角坐标，宽度，高度，边框颜色，边框线宽
+        pygame.draw.rect(window, boundry_color, (0, 0, win_width, win_height), boundry_width)
+
+
+    def update(self):
+        self.checkMode()
+
+    def checkMode(self):
+        step_now = self.step
+        for rect in self.text_rects:
+            if rect.step == step_now and rect.click:
+                if rect.txt == "START":
+                    self.start = 1
+                else:
+                    self.mode = rect.txt
+                self.step = rect.nxt
+
+    def process(self,pos):
+        for rect in self.text_rects:
+            if rect.step == self.step:
+                rect.checkClick(pos)
