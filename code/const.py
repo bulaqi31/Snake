@@ -13,6 +13,8 @@ WHITE = (255,255,255)
 PURPLE = (180,0,180)
 GRAY = (50,50,50)
 
+
+#（x坐标，y坐标）  右下为正方向
 MOV_DIR = {
     "UP":(0,-1),
     "DOWN":(0,1),
@@ -21,6 +23,7 @@ MOV_DIR = {
 }
 
 snake_color = {
+    0: WHITE,
     1: RED,
     2: GREEN
 }
@@ -37,3 +40,25 @@ EDGE_TOP = 20
 EDGE_BUTTOM = win_height-30
 EDGE_LEFT = 20
 EDGE_RIGHT = win_width-30
+
+
+def get_action(now,des,dir):
+    if des[0] >= now[0] and des[1] >= now[1]: # 在右下
+        if dir != "UP":
+            return "DOWN"
+        return "RIGHT"
+    
+    if des[0] >= now[0] and des[1] <= now[1]: # 在右上
+        if dir != "LEFT":
+            return "RIGHT"
+        return "UP"
+    
+    if des[0] <= now[0] and des[1] <= now[1]: # 在左上
+        if dir != "DOWN":
+            return "UP"
+        return "LEFT"
+    
+    if des[0] <= now[0] and des[1] >= now[1]: # 在左下
+        if dir != "RIGHT":
+            return "LEFT"
+        return "DOWN"

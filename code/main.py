@@ -8,6 +8,7 @@ import time
 from game import *
 from choose import *
 from double_mode import *
+from solo import *
 
 #clock = pygame.time.Clock()
 pygame.init()
@@ -36,8 +37,10 @@ while True:
         pygame.display.flip()
          
     # 正式进入游戏
-    if choosing.mode == "SURVIVAL":
-        game1 = Survival_Hand(window,high_score)
+    if choosing.mode == "PAIR":
+        game1 = Survival_Pair(window,high_score)
+    elif choosing.mode == "SOLO":
+        game1 = Survival_Solo(window,high_score)
     elif choosing.mode == "BATTLE":
         game1 = Battle_PVP(window)
     while True:

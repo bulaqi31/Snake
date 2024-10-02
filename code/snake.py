@@ -27,14 +27,15 @@ class Snake(object):
             item = self.list[i]
             #print(i)
             color_R,color_G,color_B = self.color                      # 给蛇添加渐变色
-            if color_R:
-                delta = i*2
-                color_G = min(color_G+delta,200)
-                color_B = min(color_B+delta,200)
-            elif color_G:
-                delta = i*2
-                color_R = min(color_R+delta,200)
-                color_B = min(color_B+delta,200)
+            if self.property:
+                if color_R:
+                    delta = i*2
+                    color_G = min(color_G+delta,200)
+                    color_B = min(color_B+delta,200)
+                elif color_G:
+                    delta = i*2
+                    color_R = min(color_R+delta,200)
+                    color_B = min(color_B+delta,200)
             color = (color_R,color_G,color_B)
             pygame.draw.rect(window,color,(item[0],item[1],SNAKE_SIZE,SNAKE_SIZE),SNAKE_SIZE//2)
         

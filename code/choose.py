@@ -11,11 +11,15 @@ class Choose(object):
         self.mode = None                                    # 现在是什么模式，应该怎么操作
         self.text_rects = []                                # 有哪些文本框
         start_rect = Text_Rect("START",200,"start","done",center=(win_width//2,win_height//2))
-        single_rect = Text_Rect("SURVIVAL",100,"survival or battle","start",center=(win_width//2-200,win_height//2))
-        double_rect = Text_Rect("BATTLE",100,"survival or battle","start",center=(win_width//2+200,win_height//2))
+        sv_hand_rect = Text_Rect("SOLO",150,"solo or pair","start",center=(win_width//2-200,win_height//2))
+        sv_hands_rect = Text_Rect("PAIR",150,"solo or pair","start",center=(win_width//2+200,win_height//2))
+        survival_rect = Text_Rect("SURVIVAL",100,"survival or battle","solo or pair",center=(win_width//2-200,win_height//2))
+        battle_rect = Text_Rect("BATTLE",100,"survival or battle","start",center=(win_width//2+200,win_height//2))
         self.text_rects.append(start_rect)
-        self.text_rects.append(single_rect)
-        self.text_rects.append(double_rect)
+        self.text_rects.append(sv_hand_rect)
+        self.text_rects.append(sv_hands_rect)
+        self.text_rects.append(survival_rect)
+        self.text_rects.append(battle_rect)
 
     def draw(self):
         self.drawback()

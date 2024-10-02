@@ -2,7 +2,7 @@ import pygame
 from const import *
 from game import *
 
-class Battle_PVP(Survival_Hand):
+class Battle_PVP(Survival_Pair):
     def __init__(self,window):
         self.window = window
         self.R_score = 0
@@ -61,9 +61,10 @@ class Battle_PVP(Survival_Hand):
                             break
                     if flag:
                         break
-        for point in self.points:                       # 点的生成直接覆盖
-            if point.pos == new_pos:
-                self.points.remove(point)
+
+        #for point in self.points:                       # 点的生成直接覆盖
+        #    if point.pos == new_pos:
+        #        self.points.remove(point)
 
         new_value = random.randint(30,50)               # 这里修改了一下 双人的变数小一点
         new_life = random.randint(19,21)                # 随机寿命
