@@ -35,7 +35,7 @@ class Survival_Solo(Survival_Pair):
             direction= self.snakes[1].direction
             action = get_action(now_pos,destination,direction)
             
-            print(action)
+            #print(action)
             snake2 = self.snakes[1]
             snake2.direction = action
             snake2.turn_pos = snake2.pos
@@ -119,11 +119,11 @@ class Survival_Solo(Survival_Pair):
                         snake.alive = 0
                     else:
                         point.exist = 0
-                        snake.full += 1
+                        snake.full += 3
                         if snake.property:                  # 障碍蛇吃东西不加分
                             self.score += point.value
                         else:                               # 障碍蛇一下增长10
-                            snake.full += 10
+                            snake.full += 7
 
     def checkPoints(self):
         for point in self.points:
