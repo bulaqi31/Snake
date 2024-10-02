@@ -36,10 +36,10 @@ while True:
         pygame.display.flip()
          
     # 正式进入游戏
-    if choosing.mode == "SINGLE":
-        game1 = Game_Single_Hand(window,high_score)
-    elif choosing.mode == "DOUBLE":
-        game1 = Game_Double(window)
+    if choosing.mode == "SURVIVAL":
+        game1 = Survival_Hand(window,high_score)
+    elif choosing.mode == "BATTLE":
+        game1 = Battle_PVP(window)
     while True:
         #print(snake1.list)
         for event in pygame.event.get():
@@ -57,7 +57,7 @@ while True:
             game1.Gameover()
             pygame.display.flip()
             time.sleep(3)
-            if choosing.mode == "SINGLE":
+            if choosing.mode == "SURVIVAL":
                 high_score = game1.high_score
             game1 = None
             break

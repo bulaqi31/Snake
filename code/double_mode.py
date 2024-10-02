@@ -2,7 +2,7 @@ import pygame
 from const import *
 from game import *
 
-class Game_Double(Game_Single_Hand):
+class Battle_PVP(Survival_Hand):
     def __init__(self,window):
         self.window = window
         self.R_score = 0

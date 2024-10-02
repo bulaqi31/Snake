@@ -5,7 +5,7 @@ from const import *
 from snake import *
 from point import *
 
-class Game_Single_Hand(object):
+class Survival_Hand(object):
     def __init__(self,window,high_score):
         self.window = window
         self.score = 0
@@ -111,7 +111,7 @@ class Game_Single_Hand(object):
         
         boundry_color = BLUE
         boundry_width = 20
-        pygame.display.set_caption('双吃蛇游戏')
+        pygame.display.set_caption('Snake')
         window = self.window
         window.fill(GRAY)
         # 参数分别为：窗口对象，左上角坐标，宽度，高度，边框颜色，边框线宽

@@ -7,12 +7,12 @@ class Choose(object):
     def __init__(self,window):
         self.window = window                                # 在哪个窗口
         self.start = 0                                      # 能否开始游戏
-        self.step = "single or double"                      # 进行什么选择
+        self.step = "survival or battle"                      # 进行什么选择
         self.mode = None                                    # 现在是什么模式，应该怎么操作
         self.text_rects = []                                # 有哪些文本框
         start_rect = Text_Rect("START",200,"start","done",center=(win_width//2,win_height//2))
-        single_rect = Text_Rect("SINGLE",100,"single or double","start",center=(win_width//2-200,win_height//2))
-        double_rect = Text_Rect("DOUBLE",100,"single or double","start",center=(win_width//2+200,win_height//2))
+        single_rect = Text_Rect("SURVIVAL",100,"survival or battle","start",center=(win_width//2-200,win_height//2))
+        double_rect = Text_Rect("BATTLE",100,"survival or battle","start",center=(win_width//2+200,win_height//2))
         self.text_rects.append(start_rect)
         self.text_rects.append(single_rect)
         self.text_rects.append(double_rect)
@@ -29,7 +29,7 @@ class Choose(object):
         
         boundry_color = BLUE
         boundry_width = 20
-        pygame.display.set_caption('双吃蛇游戏')
+        pygame.display.set_caption('Snake')
         window = self.window
         window.fill(GRAY)
         # 参数分别为：窗口对象，左上角坐标，宽度，高度，边框颜色，边框线宽
