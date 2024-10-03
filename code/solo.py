@@ -11,6 +11,7 @@ class Survival_Solo(Survival_Pair):
         self.window = window
         self.score = 0
         self.high_score = high_score
+        self.pt_pos = []            # 存储永久地形的位置
         self.snakes = []
         self.points = []
         snake1 = Snake(1,(150,150),3,"RIGHT")
@@ -33,11 +34,26 @@ class Survival_Solo(Survival_Pair):
             destination = self.points[-1].pos
             now_pos = self.snakes[1].pos
             direction= self.snakes[1].direction
-            action = get_action(now_pos,destination,direction)
+            actions = get_action(now_pos,destination,direction)
             
             #print(action)
+            new_action = None                    #初始值先设为None
             snake2 = self.snakes[1]
-            snake2.direction = action
+            # 现在选一个不会撞到永久地形的行为
+
+            for action in actions:
+                snake2.direction = action
+                next_pos = snake2.next_pos()
+                if next_pos not in self.pt_pos or random.randint(1,100)<6:
+                    # 如果下一个位置不会撞到永久地形
+                    # 或者有一个概率 用来应对被锁在封闭空间的情况，这时候它不如自杀
+                    new_action = action
+                    break
+            
+            if not new_action:              # 有可能出现一定撞到永久地形的情况
+                new_action = actions[0]
+
+            snake2.direction = new_action
             snake2.turn_pos = snake2.pos
         # 依照我的设想 小蛇不需要指令缓冲区
 
@@ -85,6 +101,8 @@ class Survival_Solo(Survival_Pair):
         #new_life = 99999
         new_point = Point(new_property,new_pos,new_value,new_life)
         self.points.append(new_point)
+        if new_property == 3:
+            self.pt_pos.append(new_pos)
 
     def process(self,key):
         evt = pygame.key.name(key)

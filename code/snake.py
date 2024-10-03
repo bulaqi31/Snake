@@ -38,17 +38,20 @@ class Snake(object):
                     color_B = min(color_B+delta,200)
             color = (color_R,color_G,color_B)
             pygame.draw.rect(window,color,(item[0],item[1],SNAKE_SIZE,SNAKE_SIZE),SNAKE_SIZE//2)
-        
-            
-
-    def update(self):
-        #print(self.list)
+    
+    #用来计算下一个位置
+    def next_pos(self):
         pos_now = self.pos
         dir = MOV_DIR[self.direction]                   
         new_x = pos_now[0] + SNAKE_SIZE * dir[0]
         new_y = pos_now[1] + SNAKE_SIZE * dir[1]       
         pos_next = (new_x,new_y)                        # 新蛇头
-        self.pos = pos_next                             # 赋值更改
+        return pos_next        
+
+    def update(self):
+        #print(self.list)
+        
+        self.pos = self.next_pos()                             # 赋值更改
         #print(pos_next)
         if self.full:                  # 上一秒吃东西了，要变长
             new_list = self.list       # 最尾巴就不删掉了
@@ -56,7 +59,7 @@ class Snake(object):
             self.full -= 1              # 现在肚子又饿了
         else:
             new_list = self.list[:-1]
-        new_list.insert(0,pos_next)    # 新蛇
+        new_list.insert(0,self.pos)    # 新蛇
         self.list = new_list           # 赋值更改
 
         if self.isDead():

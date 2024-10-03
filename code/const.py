@@ -44,21 +44,23 @@ EDGE_RIGHT = win_width-30
 
 def get_action(now,des,dir):
     if des[0] >= now[0] and des[1] >= now[1]: # 在右下
-        if dir != "UP":
-            return "DOWN"
-        return "RIGHT"
+        actions = ["DOWN","RIGHT","UP","LEFT"]
     
     if des[0] >= now[0] and des[1] <= now[1]: # 在右上
-        if dir != "LEFT":
-            return "RIGHT"
-        return "UP"
+        actions = ["RIGHT","UP","LEFT","DOWN"]
     
     if des[0] <= now[0] and des[1] <= now[1]: # 在左上
-        if dir != "DOWN":
-            return "UP"
-        return "LEFT"
+        actions = ["UP","LEFT","DOWN","RIGHT"]
     
     if des[0] <= now[0] and des[1] >= now[1]: # 在左下
-        if dir != "RIGHT":
-            return "LEFT"
-        return "DOWN"
+        actions = ["LEFT","DOWN","RIGHT","UP"]
+    
+    if dir == "UP":
+        actions.remove("DOWN")
+    if dir == "DOWN":
+        actions.remove("UP")
+    if dir == "LEFT":
+        actions.remove("RIGHT")
+    if dir == "RIGHT":
+        actions.remove("LEFT")
+    return actions
