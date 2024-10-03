@@ -60,7 +60,7 @@ while True:
             game1.Gameover()
             pygame.display.flip()
             time.sleep(3)
-            if choosing.mode == "SURVIVAL":
+            if choosing.mode in ["SOLO","PAIR"]:
                 high_score = game1.high_score
             game1 = None
             break

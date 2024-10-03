@@ -28,7 +28,7 @@ A Simple two-player Snake game
   <img src="assets/solo_demo.gif" alt="Solo模式演示">
 </p>
 
-### 双人模式
+### 对战模式
 
 - 玩家1：通过**WSAD**控制小红的上下左右，按空格键发动技能“断尾”
 - 玩家2：通过**方向键**控制小绿的上下左右，按右“ctrl”键发动技能“断尾”

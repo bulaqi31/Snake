@@ -137,7 +137,7 @@ class Survival_Solo(Survival_Pair):
             snake1.alive = 0
         if snake2.pos in snake1.list:
             snake2.alive = 0
-            self.score += random.randint(50,100)
+            self.score += snake2.length * random.randint(4,8)
 
     # 这个模式应该增加一个 生成新的障碍蛇
     def new_snake(self):
